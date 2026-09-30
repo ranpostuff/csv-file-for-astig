@@ -1,0 +1,1 @@
+echo 'v24.19.0' > .node-version
