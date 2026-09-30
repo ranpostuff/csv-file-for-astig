@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { authStorage } from "../utils/authStorage";
+import { IS_DEMO_MODE, createDemoAuth } from "../utils/demoAuth";
 import type { AuthState } from "../types/authState";
 import { LoadingScreen } from "../../../components/ui/LoadingScreen";
 
@@ -17,6 +18,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     if (storedAuth) {
       setAuth(storedAuth);
+    } else if (IS_DEMO_MODE) {
+      setAuth(createDemoAuth());
     }
     setIsInitialized(true);
   }, []);
